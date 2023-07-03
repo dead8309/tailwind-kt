@@ -6,6 +6,9 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.versionCheck)
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.kobweb.application) apply false
 }
 
 subprojects {
@@ -46,10 +49,6 @@ tasks.withType<DependencyUpdatesTask> {
 }
 
 fun String.isNonStable() = "^[0-9,.v-]+(-r)?$".toRegex().matches(this).not()
-
-tasks.register("clean", Delete::class.java) {
-    delete(rootProject.buildDir)
-}
 
 tasks.register("reformatAll") {
     description = "Reformat all the Kotlin Code"
