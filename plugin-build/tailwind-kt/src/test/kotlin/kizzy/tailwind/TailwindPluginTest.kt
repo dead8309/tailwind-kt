@@ -1,13 +1,11 @@
 package kizzy.tailwind
 
 import kizzy.tailwind.extension.TailwindPluginExtension
-import kizzy.tailwind.task.CopyConfigsTask
 import kizzy.tailwind.task.GenerateDefaultConfigTask
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
-import java.io.File
 
 class TailwindPluginTest {
 
