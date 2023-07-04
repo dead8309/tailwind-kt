@@ -33,4 +33,4 @@ gradleEnterprise {
 
 rootProject.name = ("io.github.dead8309")
 
-include(":plugin")
+include(":tailwind-kt")
