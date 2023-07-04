@@ -14,7 +14,10 @@ abstract class TailwindPluginExtension @Inject constructor(project: Project) {
     }
 
     abstract val configsDir: Property<File>
+
+    abstract val moduleName: Property<String>
     init {
         configsDir.convention(project.projectDir)
+        moduleName.convention(project.rootProject.name)
     }
 }
