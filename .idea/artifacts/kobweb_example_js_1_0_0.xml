@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="kobweb-example-js-1.0.0">
+    <output-path>$PROJECT_DIR$/examples/kobweb-example/build/libs</output-path>
+    <root id="archive" name="kobweb-example-js-1.0.0.jar">
+      <element id="module-output" name="kotlin-gradle-plugin-template.examples.kobweb-example.jsMain" />
+    </root>
+  </artifact>
+</component>

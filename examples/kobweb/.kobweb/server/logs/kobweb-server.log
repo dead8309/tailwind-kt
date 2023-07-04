@@ -1,0 +1,8 @@
+2023-07-03 22:22:08.500 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2023-07-03 22:22:08.527 [main] WARN  ktor.application - API jar specified but does not exist! Please fix conf.yaml. Invalid path: "build\libs\tailwindktplugin.jar"
+2023-07-03 22:22:08.607 [main] INFO  ktor.application - Application started in 0.183 seconds.
+2023-07-03 22:22:08.990 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2023-07-03 22:24:48.250 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2023-07-03 22:32:52.288 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2023-07-03 22:33:02.349 [relocated/kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Kobweb server shutting down...
+2023-07-03 22:33:04.385 [relocated/kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Server finished shutting down.

@@ -1,0 +1,14 @@
+site:
+  title: "Tailwind Plugin"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/developmentExecutable/tailwindktplugin.js"
+      api: "build/libs/tailwindktplugin.jar"
+    prod:
+      script: "build/distributions/tailwindktplugin.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080

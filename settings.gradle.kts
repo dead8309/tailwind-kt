@@ -14,6 +14,8 @@ dependencyResolutionManagement {
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         maven("https://us-central1-maven.pkg.dev/varabyte-repos/public")
 
+        maven { url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven") }
+
     }
 }
 
@@ -30,7 +32,8 @@ gradleEnterprise {
     }
 }
 
-rootProject.name = "kotlin-gradle-plugin-template"
+rootProject.name = "tailwindktplugin"
 
-include(":example")
+include("examples:kobweb")
+include("examples:kotlinJs")
 includeBuild("plugin-build")

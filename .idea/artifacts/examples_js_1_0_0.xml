@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="examples-js-1.0.0">
+    <output-path>$PROJECT_DIR$/examples/build/libs</output-path>
+    <root id="archive" name="examples-js-1.0.0.jar" />
+  </artifact>
+</component>
