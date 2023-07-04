@@ -15,7 +15,7 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create(property("ID").toString()) {
+        create("tailwindKt") {
             id = property("ID").toString()
             implementationClass = property("IMPLEMENTATION_CLASS").toString()
             version = property("VERSION").toString()
@@ -28,25 +28,60 @@ gradlePlugin {
     }
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 publishing {
-    publications {
-        create<MavenPublication>("mavenPluginPublish") {
-            from(components["java"])
-            artifactId = "tailwind-kt"
-            pom {
-                name.set(property("DISPLAY_NAME").toString())
-                description.set(property("DISPLAY_NAME").toString())
-                url.set(property("WEBSITE").toString())
-                licenses {
-                    license {
-                        name.set("MIT License")
+    afterEvaluate {
+        publications {
+            getByName<MavenPublication>("pluginMaven") {
+                pom {
+                    artifactId = "tailwind-kt"
+                    name.set(property("DISPLAY_NAME").toString())
+                    description.set(property("DISPLAY_NAME").toString())
+                    url.set(property("WEBSITE").toString())
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://opensource.org/license/mit/")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("dead8309")
+                            name.set("Vaibhav Raj")
+                            email.set("deadyt8309@gmail.com")
+                        }
+                    }
+                    scm {
+                        connection.set("scm:git:git://github.com/dead8309/tailwind-kt.git")
+                        developerConnection.set("scm:git:ssh://github.com:dead8309/tailwind-kt.git")
+                        url.set("https://github.com/dead8309/tailwind-kt/tree/main")
                     }
                 }
-                developers {
-                    developer {
-                        id.set("dead8309")
-                        name.set("Vaibhav Raj")
-                        email.set("deadyt8309@gmail.com")
+            }
+            getByName<MavenPublication>("tailwindKtPluginMarkerMaven") {
+                pom {
+                    url.set(property("WEBSITE").toString())
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://opensource.org/license/mit/")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("dead8309")
+                            name.set("Vaibhav Raj")
+                            email.set("deadyt8309@gmail.com")
+                        }
+                    }
+                    scm {
+                        connection.set("scm:git:git://github.com/dead8309/tailwind-kt.git")
+                        developerConnection.set("scm:git:ssh://github.com:dead8309/tailwind-kt.git")
+                        url.set("https://github.com/dead8309/tailwind-kt/tree/main")
                     }
                 }
             }
@@ -67,5 +102,8 @@ publishing {
 
 signing {
     useGpgCmd()
-    sign(publishing.publications["mavenPluginPublish"])
+    afterEvaluate {
+        sign(publishing.publications["pluginMaven"])
+        sign(publishing.publications["tailwindKtPluginMarkerMaven"])
+    }
 }
