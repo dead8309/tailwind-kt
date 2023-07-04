@@ -1,27 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm")
+    `kotlin-dsl`
     `java-gradle-plugin`
     alias(libs.plugins.pluginPublish)
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation(gradleApi())
-
+    // Get access to Kotlin multiplatform source sets
+    implementation(kotlin("gradle-plugin"))
     testImplementation(libs.junit)
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
 }
 
 gradlePlugin {
