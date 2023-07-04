@@ -2,7 +2,6 @@
 detekt = "1.23.0"
 kotlin = "1.8.20"
 ktlintGradle = "11.4.2"
-pluginPublish = "1.2.0"
 versionCheck = "0.47.0"
 jetbrains-compose = "1.4.1"
 kobweb = "0.13.7"
@@ -11,7 +10,6 @@ kobweb = "0.13.7"
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle"}
-pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish"}
 versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionCheck"}
 
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
@@ -26,6 +24,3 @@ junit = "junit:junit:4.13.2"
 kobweb-api = { module = "com.varabyte.kobweb:kobweb-api", version.ref = "kobweb" }
 kobweb-core = { module = "com.varabyte.kobweb:kobweb-core ", version.ref = "kobweb" }
 kobweb-silk-core = { module = "com.varabyte.kobweb:kobweb-silk", version.ref = "kobweb" }
-kobweb-silk-icons-fa = { module = "com.varabyte.kobweb:kobweb-silk-icons-fa", version.ref = "kobweb" }
-kobweb-silk-icons-mdi = { module = "com.varabyte.kobweb:kobweb-silk-icons-mdi", version.ref = "kobweb" }
-kobwebx-markdown = { module = "com.varabyte.kobwebx:kobwebx-markdown", version.ref = "kobweb" }

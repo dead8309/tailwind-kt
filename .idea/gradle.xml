@@ -10,7 +10,7 @@
               <build path="$PROJECT_DIR$/plugin-build" name="io.github.dead8309">
                 <projects>
                   <project path="$PROJECT_DIR$/plugin-build" />
-                  <project path="$PROJECT_DIR$/plugin-build/plugin" />
+                  <project path="$PROJECT_DIR$/plugin-build/tailwind-kt" />
                 </projects>
               </build>
             </builds>
@@ -25,7 +25,7 @@
             <option value="$PROJECT_DIR$/examples/kobweb" />
             <option value="$PROJECT_DIR$/examples/kotlinJs" />
             <option value="$PROJECT_DIR$/plugin-build" />
-            <option value="$PROJECT_DIR$/plugin-build/plugin" />
+            <option value="$PROJECT_DIR$/plugin-build/tailwind-kt" />
           </set>
         </option>
       </GradleProjectSettings>
