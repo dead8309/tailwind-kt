@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import kizzy.tailwind.utils.setupTailwindProject
 
@@ -20,8 +22,12 @@ kobweb {
     }
 }
 
+tailwind {
+    moduleName.set("examples-kobweb")
+}
+
 kotlin {
-    configAsKobwebApplication("tailwindktplugin",includeServer = false)
+    configAsKobwebApplication("examples-kobweb",includeServer = false)
     setupTailwindProject()
 
     @Suppress("UNUSED_VARIABLE") // Suppress spurious warnings about sourceset variables not being used
