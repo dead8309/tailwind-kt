@@ -1,95 +1,87 @@
 # tailwind-kt
 
-[![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) [![Pre Merge Checks](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Pre+Merge+Checks%22)  [![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
+[![Pre Merge Checks](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Pre+Merge+Checks%22)  [![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
 
-A simple Github template that lets you create a **Gradle Plugin** 🐘 project using **100% Kotlin** and be up and running in a **few seconds**.
+A simple gradle plugin that configured tailwindcss to be used in kotlinJs target projects
 
-This template is focused on delivering a project with **static analysis** and **continuous integration** already in place.
+## Installation
+Currently, the plugin is published no where. I'm trying to publish it to maven repo
 
-## How to use 👣
+## Configuration
+tailwind-kt plugin can be customized through `tailwind {}` block in your build.gradle file.
 
-Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) button to create a new repo starting from this template.
+- #### The Plugin comes with default values, so you don't have to configure them manually
 
-Once created don't forget to update the:
-- [gradle.properties](plugin-build/gradle.properties)
-- Plugin Usages (search for [com.ncorti.kotlin.gradle.template](https://github.com/cortinico/kotlin-gradle-plugin-template/search?q=com.ncorti.kotlin.gradle.template&unscoped_q=com.ncorti.kotlin.gradle.template) in the repo and replace it with your ID).
+| name         | type               | description                                                                                                                                                                                                                       | default              |
+|--------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| `configDir`  | `Property<File>`   | A `folder` containing *tailwind.config.js* & *postcss.config.js*                                                                                                                                                                  | `project.projectDir` |
+| `moduleName` | `Property<String>` | Name of the module where the build files packages are located. Usually all the js files are present in the folder named after the project name.<br/> You can find your moduleName by going to root project's `build/js/packages/` | `rootProject.name`   |
 
-## Features 🎨
-
-- **100% Kotlin-only template**.
-- Plugin build setup with **composite build**.
-- 100% Gradle Kotlin DSL setup.
-- Dependency versions managed via Gradle Versions Catalog (`libs.versions.toml`).
-- CI Setup with GitHub Actions.
-- Kotlin Static Analysis via `ktlint` and `detekt`.
-- Publishing-ready to Gradle Portal.
-- Issues Template (bug report + feature request)
-- Pull Request Template.
-
-## Composite Build 📦
-
-This template is using a [Gradle composite build](https://docs.gradle.org/current/userguide/composite_builds.html) to build, test and publish the plugin. This means that you don't need to run Gradle twice to test the changes on your Gradle plugin (no more `publishToMavenLocal` tricks or so).
-
-The included build is inside the [plugin-build](plugin-build) folder.
-
-### `preMerge` task
-
-A `preMerge` task on the top level build is already provided in the template. This allows you to run all the `check` tasks both in the top level and in the included build.
-
-You can easily invoke it with:
-
+- #### Example of how to configure the plugin based on your specific needs
+```groovy
+tailwind {
+    configDir.set(rootProject.resolve("my_configs_dir"))
+    moduleName.set("my_module_name")
+}
 ```
-./gradlew preMerge
+- ### setupTailwindProject()
+
+We provide a utility function `setupTailwindProject()` which sets up *Js(IR)*
+target with some other settings like enabling css support.
+
+```groovy
+kotlin {
+    setupTailwindProject()
+
+}
 ```
 
-If you need to invoke a task inside the included build with:
+These dependencies are also installed by the utility function
 
+npm:
+- `tailwindcss`: `3.3.2`
+- `postcss`: `8.4.8`
+- `autoprefixer`: `10.4.2`
+- `postcss-loader`: `4.3.0`
+
+kotlin:
+- `org.jetbrains.kotlin-wrappers:kotlin-extensions`:`1.0.1-pre.256-kotlin-1.5.31`
+
+### Skipping dependencies
+You can skip **npm** dependencies by passing `skipDependencies = true` parameter.
+
+```kotlin
+setupTailwindProject(skipDependencies = true)
 ```
-./gradlew -p plugin-build <task-name>
+**note**: `kotlin-extensions` will always be installed as its necessary to including your css file.
+
+## Usage
+Head over to your file where you want to use tailwindcss and add the below code to the start of your function
+```kotlin
+kotlinext.js.require("./globals.css")
 ```
+See how [kobweb-example](./examples/kobweb/src/jsMain/kotlin/org/example/pages/Index.kt) does it.
+
+##### 🎉 Now we can finally use tailwind classes in our app
+
+- [Tailwind Docs](https://tailwindcss.com)
 
 
-### Dependency substitution
+## Best Practices
+#### problem: You need to require css file in every file where you will be using tailwind classes else it won't work*
 
-Please note that the project relies on module name/group in order for [dependency substitution](https://docs.gradle.org/current/userguide/resolution_rules.html#sec:dependency_substitution_rules) to work properly. If you change only the plugin ID everything will work as expected. If you change module name/group, things might break and you probably have to specify a [substitution rule](https://docs.gradle.org/current/userguide/resolution_rules.html#sub:project_to_module_substitution).
+#### solution:
 
+- Define a basic layout file and add the `kotlinext.js.require("./globals.css")` line there.
+- Use this layout in all other files
 
-## Publishing 🚀
-
-This template is ready to let you publish to [Gradle Portal](https://plugins.gradle.org/).
-
-The [![Publish Plugin to Portal](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Publish%20Plugin%20to%20Portal/badge.svg?branch=1.0.0)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Publish+Plugin+to+Portal%22) Github Action will take care of the publishing whenever you **push a tag**.
-
-Please note that you need to configure two secrets: `GRADLE_PUBLISH_KEY` and `GRADLE_PUBLISH_SECRET` with the credetials you can get from your profile on the Gradle Portal.
-
-## 100% Kotlin 🅺
-
-This template is designed to use Kotlin everywhere. The build files are written using [**Gradle Kotlin DSL**](https://docs.gradle.org/current/userguide/kotlin_dsl.html) as well as the [Plugin DSL](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block) to setup the build.
-
-Dependencies are centralized inside the [libs.versions.toml](gradle/libs.versions.toml).
-
-Moreover, a minimalistic Gradle Plugin is already provided in Kotlin to let you easily start developing your own around it.
-
-## Static Analysis 🔍
-
-This template is using [**ktlint**](https://github.com/pinterest/ktlint) with the [ktlint-gradle](https://github.com/jlleitschuh/ktlint-gradle) plugin to format your code. To reformat all the source code as well as the buildscript you can run the `ktlintFormat` gradle task.
-
-This template is also using [**detekt**](https://github.com/arturbosch/detekt) to analyze the source code, with the configuration that is stored in the [detekt.yml](config/detekt/detekt.yml) file (the file has been generated with the `detektGenerateConfig` task).
-
-## CI ⚙️
-
-This template is using [**GitHub Actions**](https://github.com/cortinico/kotlin-android-template/actions) as CI. You don't need to setup any external service and you should have a running CI once you start using this template.
-
-There are currently the following workflows available:
-- [Validate Gradle Wrapper](.github/workflows/gradle-wrapper-validation.yml) - Will check that the gradle wrapper has a valid checksum
-- [Pre Merge Checks](.github/workflows/pre-merge.yaml) - Will run the `preMerge` tasks as well as trying to run the Gradle plugin.
-- [Publish to Plugin Portal](.github/workflows/publish-plugin.yaml) - Will run the `publishPlugin` task when pushing a new tag.
+This is what I do in my
+[shadcn-kotlin](https://github.com/dead8309/shadcn-kotlin/blob/cde4b64e1616e632e5660b195145578fa0fe1dd8/site/src/jsMain/kotlin/org/example/kobwebreaxttailwind/components/layouts/PageLayout.kt#L23) project
 
 ## Contributing 🤝
 
-Feel free to open a issue or submit a pull request for any bugs/improvements.
+Feel free to open an issue or submit a pull request for any bugs/improvements.
 
 ## License 📄
 
-This template is licensed under the MIT License - see the [License](License) file for details.
-Please note that the generated template is offering to start with a MIT license but you can change it to whatever you wish, as long as you attribute under the MIT terms that you're using the template.
+This template is licensed under the MIT License. See the [License](LICENSE) file for details.
