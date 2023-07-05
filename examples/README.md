@@ -1,18 +1,15 @@
-# This folder contains example projects on how to use the plugin
+# Examples
 
-### [kobweb](./kobweb): Kobweb default application
-You should be having kobweb cli in your path to run this. Check out [Kobweb Docs](https://github.com/varabyte/kobweb)
+This directory contains example projects that demonstrate the usage of the plugin
 
+## kobweb
 
-### [compose-web](./compose-web): Compose Multi-platform application targeting web
-
-## Things to note📝
-
-1. Apply `"io.github.dead8309.tailwind-kt"` plugin
-2. Configure `tailwind` as per your needs
-3. Use `setupTailwindProject`
-4. Always use `kotlinext.js.require("./globals.css")` wherever you want to use tailwind classes
+The [kobweb](./kobweb) example is a default kobweb application. To run this example,
+ensure that you have `kobweb` CLI installed. Check out [Kobweb Docs](https://github.com/varabyte/kobweb)
+for more information.
 
 
+## compose-web
 
-
+The [compose-web](./compose-web) example demonstrates a multi-platform application targeting
+the web
