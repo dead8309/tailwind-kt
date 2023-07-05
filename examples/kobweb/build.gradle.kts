@@ -23,6 +23,9 @@ kobweb {
 }
 
 tailwind {
+    /** This is required here because we are in a multimodule project. When we run this project
+     * we will get our build module located at {rootDir}/build/js/packages/examples-kobweb.
+     */
     moduleName.set("examples-kobweb")
 }
 
