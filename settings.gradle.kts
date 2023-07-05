@@ -35,5 +35,5 @@ gradleEnterprise {
 rootProject.name = "tailwindktplugin"
 
 include("examples:kobweb")
-include("examples:kotlinJs")
+include("examples:compose-web")
 includeBuild("plugin-build")
