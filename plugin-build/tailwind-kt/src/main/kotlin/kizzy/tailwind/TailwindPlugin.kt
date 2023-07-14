@@ -6,11 +6,9 @@ import kizzy.tailwind.task.GenerateDefaultConfigTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-
-
 private const val COMPILE_KOTLIN_JS = "compileKotlinJs"
 
-class TailwindPlugin: Plugin<Project> {
+class TailwindPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
             val extension = extensions.create(

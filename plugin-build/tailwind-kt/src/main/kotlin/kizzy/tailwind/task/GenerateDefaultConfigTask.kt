@@ -18,10 +18,10 @@ import javax.inject.Inject
 
 abstract class GenerateDefaultConfigTask @Inject constructor(
     extension: TailwindPluginExtension
-): DefaultTask(){
+) : DefaultTask() {
 
     @get:Input
-    @get:Option(option = "configDir",description = DESCRIPTION)
+    @get:Option(option = "configDir", description = DESCRIPTION)
     abstract val configsDir: Property<File>
 
     init {
@@ -29,24 +29,25 @@ abstract class GenerateDefaultConfigTask @Inject constructor(
         description = "Generates default config files if they are not present in project directory"
         group = BasePlugin.BUILD_GROUP
     }
+
     @TaskAction
     fun run() {
         logger.debug("Using configDir: {}", configsDir.get())
         check(configsDir.get().exists())
         val configsDir = configsDir.get()
 
-        val tailwindConfig = File(configsDir,"tailwind.config.js")
-        val postCssConfig = File(configsDir,"postcss.config.js")
+        val tailwindConfig = File(configsDir, "tailwind.config.js")
+        val postCssConfig = File(configsDir, "postcss.config.js")
 
-        writeToFile("Tailwind",tailwindConfig, tailwindTemplate())
-        writeToFile("Postcss",postCssConfig, postCssConfigTemplate())
+        writeToFile("Tailwind", tailwindConfig, tailwindTemplate())
+        writeToFile("Postcss", postCssConfig, postCssConfigTemplate())
 
         val webpack = project.projectDir.resolve("webpack.config.d")
         webpack.mkdirs()
-        val postCssLoader = File(webpack,"postcss-loader.config.js")
-        writeToFile("Postcss Loader",postCssLoader, postCssLoaderTemplate())
+        val postCssLoader = File(webpack, "postcss-loader.config.js")
+        writeToFile("Postcss Loader", postCssLoader, postCssLoaderTemplate())
 
-        val cssFile = File(project.projectDir.resolve("src/jsMain/resources"),"globals.css")
+        val cssFile = File(project.projectDir.resolve("src/jsMain/resources"), "globals.css")
         writeToFile("Css", cssFile, cssTemplate())
     }
 
@@ -64,7 +65,9 @@ abstract class GenerateDefaultConfigTask @Inject constructor(
     }
 
     internal companion object {
-        private const val DESCRIPTION = "Location of a directory where default tailwind.config.js & postcss.config.js should be generated . Default is projectDir"
+        private const val DESCRIPTION =
+            "Location of a directory where default tailwind.config.js & postcss.config.js should be generated. " +
+                "Default is projectDir"
         const val NAME = "generateDefaultFiles"
     }
 }

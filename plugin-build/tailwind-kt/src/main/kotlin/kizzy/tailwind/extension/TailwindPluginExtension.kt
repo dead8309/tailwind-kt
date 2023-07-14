@@ -7,7 +7,6 @@ import org.gradle.api.provider.Property
 import java.io.File
 import javax.inject.Inject
 
-
 abstract class TailwindPluginExtension @Inject constructor(project: Project) {
     internal companion object {
         const val NAME = "tailwind"

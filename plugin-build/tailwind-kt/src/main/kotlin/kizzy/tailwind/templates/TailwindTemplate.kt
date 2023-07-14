@@ -15,4 +15,3 @@ internal fun tailwindTemplate() = """
       plugins: []
     }
 """.trimIndent()
-

@@ -1,6 +1,6 @@
 package kizzy.tailwind.templates
 
-internal fun postCssLoaderTemplate() =  """
+internal fun postCssLoaderTemplate() = """
     (() => {
         const cssRule = config.module.rules.find(r => "test.css".match(r.test));
         if (!cssRule) {

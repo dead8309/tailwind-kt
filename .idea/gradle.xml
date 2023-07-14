@@ -22,8 +22,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/examples" />
+            <option value="$PROJECT_DIR$/examples/compose-web" />
             <option value="$PROJECT_DIR$/examples/kobweb" />
-            <option value="$PROJECT_DIR$/examples/kotlinJs" />
             <option value="$PROJECT_DIR$/plugin-build" />
             <option value="$PROJECT_DIR$/plugin-build/tailwind-kt" />
           </set>

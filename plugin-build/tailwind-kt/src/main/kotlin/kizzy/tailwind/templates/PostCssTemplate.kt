@@ -8,5 +8,3 @@ internal fun postCssConfigTemplate() = """
       }
     }
 """.trimIndent()
-
-

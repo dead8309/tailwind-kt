@@ -4,7 +4,6 @@ import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.getting
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-
 fun KotlinMultiplatformExtension.setupTailwindProject(skipDependencies: Boolean = false) {
     js(IR) {
         browser {
@@ -29,4 +28,3 @@ fun KotlinMultiplatformExtension.setupTailwindProject(skipDependencies: Boolean 
         }
     }
 }
-
