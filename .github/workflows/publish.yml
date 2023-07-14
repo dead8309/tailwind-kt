@@ -11,6 +11,8 @@ jobs:
       # See: https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
       ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNINGKEY }}
       ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PARAPHRASE }}
+      OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v3
