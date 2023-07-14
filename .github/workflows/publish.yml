@@ -24,4 +24,4 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Publish artifacts
-        run: ./gradlew :plugin-build:tailwind-kt:publish
+        run: ./gradlew :plugin-build:tailwind-kt:publish --stacktrace
