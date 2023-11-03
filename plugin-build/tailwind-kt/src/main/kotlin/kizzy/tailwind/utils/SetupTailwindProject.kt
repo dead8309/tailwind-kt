@@ -7,11 +7,11 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 fun KotlinMultiplatformExtension.setupTailwindProject(skipDependencies: Boolean = false) {
     js(IR) {
         browser {
-            commonWebpackConfig {
-                cssSupport {
+            commonWebpackConfig(Action {
+                cssSupport(Action {
                     enabled.set(true)
-                }
-            }
+                })
+            })
         }
     }
     @Suppress("UNUSED_VARIABLE")
