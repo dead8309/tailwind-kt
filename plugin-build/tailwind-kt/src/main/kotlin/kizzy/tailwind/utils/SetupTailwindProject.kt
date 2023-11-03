@@ -1,5 +1,6 @@
 package kizzy.tailwind.utils
 
+import org.gradle.api.Action
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.getting
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
